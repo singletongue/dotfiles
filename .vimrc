@@ -22,7 +22,7 @@ if dein#load_state('$HOME/.vim/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('joshdick/onedark.vim')
+  call dein#add('chriskempson/base16-vim')
   call dein#add('sheerun/vim-polyglot')
 
   " Required:
@@ -45,10 +45,8 @@ let g:python_host_prog = expand('$HOME/.pyenv/versions/neovim2/bin/python')
 let g:python3_host_prog = expand('$HOME/.pyenv/versions/neovim3/bin/python')
 
 " settings for onedark
-let g:onedark_termcolors = 16
-syntax on
-colorscheme onedark
-let g:airline_theme='onedark'
+colorscheme base16-material
+let g:airline_theme='base16'
 
 " setting for deoplete
 let g:deoplete#enable_at_startup = 1
