@@ -44,14 +44,28 @@ endif
 let g:python_host_prog = expand('$HOME/.pyenv/versions/neovim2/bin/python')
 let g:python3_host_prog = expand('$HOME/.pyenv/versions/neovim3/bin/python')
 
-" settings for onedark
+" show hidden files in NERDTree
+let NERDTreeShowHidden=1
+
+" open NERDTree automatically when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" map Ctrl+n to open NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" settings for colorscheme and style
 colorscheme base16-material
 let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1
 
 " setting for deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
-call deoplete#custom#source('jedi', 'rank', 1)
+call deoplete#custom#source('jedi', 'rank', 1000)
 
 " 改行時に自動でインデントを行う
 set autoindent
@@ -119,7 +133,7 @@ set number
 set ruler
 
 " カーソル行の上下へのオフセットを設定する
-set scrolloff=2
+set scrolloff=5
 
 " インデントでずれる幅を設定する
 set shiftwidth=4
@@ -172,3 +186,7 @@ set nowrap
 
 " 検索時に最後まで移動したら最初に戻る
 set wrapscan
+
+" 保存時に行末のスペースを削除する
+autocmd BufWritePre * :%s/\s\+$//ge
+
