@@ -1,10 +1,3 @@
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-unset PYTHONPATH
-
 # 補完候補を一覧で表示する
 setopt auto_list
 # 補完キー連打で候補順に自動で補完する
@@ -138,6 +131,13 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
 
 FPATH_ZSHRC_HOST_SPECIFIC=~/.zshrc_host_specific
 if [ -e $FPATH_ZSHRC_HOST_SPECIFIC ]; then
