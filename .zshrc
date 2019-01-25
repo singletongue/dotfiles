@@ -63,8 +63,8 @@ export HISTSIZE=10000
 # ファイルに保存する履歴の件数を指定する
 export SAVEHIST=1000000
 # 文字コードを設定する
-export LANG='ja_JP.UTF-8'
-export LC_CTYPE='ja_JP.UTF-8'
+export LANG='en_US.UTF-8'
+export LC_CTYPE='en_US.UTF-8'
 # LESSの文字コード設定
 export LESSCHARSET=utf-8
 
