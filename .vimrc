@@ -1,68 +1,52 @@
-"dein Scripts-----------------------------
+" dein (https://github.com/Shougo/dein.vim)
 if &compatible
-  set nocompatible               " Be iMproved
+    set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/m-suzuki/.vim/bundles/repos/github.com/Shougo/dein.vim
 
-" Required:
-if dein#load_state('$HOME/.vim/dein')
-  call dein#begin('$HOME/.vim/dein')
+if dein#load_state('/Users/m-suzuki/.vim/bundles')
+    call dein#begin('/Users/m-suzuki/.vim/bundles')
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('$HOME/.vim/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('/Users/m-suzuki/.vim/bundles/repos/github.com/Shougo/dein.vim')
+    call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('deoplete-plugins/deoplete-jedi')
+    call dein#add('scrooloose/nerdtree')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('chriskempson/base16-vim')
+    call dein#add('sheerun/vim-polyglot')
 
-  " Add or remove your plugins here:
-  call dein#add('Shougo/denite.nvim')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('zchee/deoplete-jedi')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('chriskempson/base16-vim')
-  call dein#add('sheerun/vim-polyglot')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
+    call dein#end()
+    call dein#save_state()
 endif
 
-" Required:
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+    call dein#install()
 endif
+" end dein
 
-"End dein Scripts-------------------------
-
-let g:python_host_prog = expand('$HOME/.pyenv/versions/neovim2/bin/python')
+" neovim
 let g:python3_host_prog = expand('$HOME/.pyenv/versions/neovim3/bin/python')
 
-" show hidden files in NERDTree
+" NERDTree
 let NERDTreeShowHidden=1
-
-" open NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-" close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" map Ctrl+n to open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-" settings for colorscheme and style
+" colorscheme and style
 colorscheme base16-material
 let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled = 1
 
-" setting for deoplete
+" deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
 call deoplete#custom#source('jedi', 'rank', 1000)
@@ -189,4 +173,3 @@ set wrapscan
 
 " 保存時に行末のスペースを削除する
 autocmd BufWritePre * :%s/\s\+$//ge
-

@@ -1,0 +1,25 @@
+# read system default settings
+$include /etc/inputrc
+
+# set not to ring a bell
+set bell-style none
+
+# use different colors for completions to indicate their file type
+set colored-stats on
+
+# perform filename matching and completion in a case-insensitive fashion
+set completion-ignore-case on
+
+# list completions immediately when the typed words have more than one possible completions
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# skip inserting completed suffix when performing completion in the middle of a word
+set skip-completed-text on
+
+# append special charcters to completing filenames to indicate their file type
+set visible-stats on
+
+# perform history substring search with up/down keys
+"\e[A": history-search-backward
+"\e[B": history-search-forward
