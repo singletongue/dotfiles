@@ -9,14 +9,22 @@ if [ -t 1 ] && [ -f "$HOME/.inputrc" ]; then
 fi
 
 # custom prompts
-function venv_info() {
-    if [ -n $VIRTUAL_ENV ]; then
-        echo "${VIRTUAL_ENV##*/}"
+function git_info() {
+    BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+    if [ -n "$BRANCH" ]; then
+        echo "$BRANCH "
     else
         echo ""
     fi
 }
-PS1='\[\e[33m\]\A \[\e[36m\]\h \[\e[34m\]\w \[\e[35m\]$(venv_info)\n\[\e[32m\]\\$ \[\e[m\]'
+function venv_info() {
+    if [ -n $VIRTUAL_ENV ]; then
+        echo "${VIRTUAL_ENV##*/} "
+    else
+        echo ""
+    fi
+}
+PS1='\[\e[31m\]\D{%Y-%m-%d} \[\e[33m\]\A \[\e[32m\]\h \[\e[36m\]\w \[\e[34m\]$(git_info)\[\e[35m\]$(venv_info)\n\[\e[32m\]\\$ \[\e[m\]'
 
 # history-related configuration
 export HISTFILE="$HOME/.bash_history"
@@ -36,11 +44,6 @@ export LC_CTYPE="en_US.UTF-8"
 # set custom paths
 export PATH="$HOME/local/bin:$PATH"
 
-# linuxbrew
-if [ -d "$HOME/.linuxbrew" ]; then
-    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
-fi
-
 # set the default editor
 if type nvim 2&>/dev/null; then
     export EDITOR=nvim
@@ -56,9 +59,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # brew completions
-if [ -r "$HOME/.linuxbrew/etc/profile.d/bash_completion.sh" ]; then
-    . "$HOME/.linuxbrew/etc/profile.d/bash_completion.sh"
-elif [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
+if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
     . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
