@@ -3,12 +3,12 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=/Users/m-suzuki/.vim/bundles/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.vim/bundles/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('/Users/m-suzuki/.vim/bundles')
-    call dein#begin('/Users/m-suzuki/.vim/bundles')
+if dein#load_state('$HOME/.vim/bundles')
+    call dein#begin('$HOME/.vim/bundles')
 
-    call dein#add('/Users/m-suzuki/.vim/bundles/repos/github.com/Shougo/dein.vim')
+    call dein#add('$HOME/.vim/bundles/repos/github.com/Shougo/dein.vim')
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('deoplete-plugins/deoplete-jedi')
