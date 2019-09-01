@@ -5,7 +5,7 @@ fi
 
 # read .inputrc
 if [ -t 1 ] && [ -f "$HOME/.inputrc" ]; then
-    bind "$HOME/.inputrc"
+    bind -f "$HOME/.inputrc"
 fi
 
 # custom prompts
