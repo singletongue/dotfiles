@@ -25,14 +25,7 @@ endif
 
 filetype plugin indent on
 syntax enable
-
-if dein#check_install()
-    call dein#install()
-endif
 " end dein
-
-" neovim
-let g:python3_host_prog = expand('$HOME/.pyenv/versions/neovim3/bin/python')
 
 " NERDTree
 let NERDTreeShowHidden=1
