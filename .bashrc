@@ -1,7 +1,17 @@
-# read system default settings
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
+export LSCOLORS=exfxcxdxbxegedabagacad  # for BSD ls
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'  # for GNU ls
+
+export PATH="$HOME/local/bin:$PATH"
+
+HISTFILE="$HOME/.bash_history"
+SAVEHIST=100000
+HISTSIZE=10000
+
+PROMPT_COMMAND="history -a;history -r;$PROMPT_COMMAND"
+shopt -s histappend
 
 # read .inputrc
 if [ -t 1 ] && [ -f "$HOME/.inputrc" ]; then
@@ -26,42 +36,12 @@ function venv_info() {
 }
 PS1='\[\e[31m\]\D{%Y-%m-%d} \[\e[33m\]\A \[\e[32m\]\h \[\e[36m\]\w \[\e[34m\]$(git_info)\[\e[35m\]$(venv_info)\n\[\e[32m\]\\$ \[\e[m\]'
 
-# history-related configuration
-export HISTFILE="$HOME/.bash_history"
-export HISTSIZE=100000
-export HISTFILESIZE=100000
-export HISTTIMEFORMAT="%F %T "
-export HISTCONTROL=ignoreboth
-
-# update history in real time
-shopt -s histappend
-PROMPT_COMMAND="history -a;history -r;$PROMPT_COMMAND"
-
-# set locales and charsets
-export LANG="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-
-# set custom paths
-export PATH="$HOME/local/bin:$PATH"
-
-# set the default editor
-if type nvim 2&>/dev/null; then
-    export EDITOR=nvim
-else
-    export EDITOR=vim
-fi
-
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-fi
-
-# brew completions
-if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
-    . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
 # fzf
