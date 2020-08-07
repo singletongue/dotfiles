@@ -5,6 +5,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad  # for BSD ls
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'  # for GNU ls
 
 export PATH="$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 
 HISTFILE="$HOME/.zsh_history"
 SAVEHIST=100000
@@ -12,10 +13,10 @@ HISTSIZE=10000
 
 setopt append_history
 setopt complete_in_word
-setopt inc_append_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
+setopt inc_append_history
 setopt magic_equal_subst
 setopt no_beep
 setopt share_history
@@ -57,6 +58,9 @@ SPACESHIP_DIR_TRUNC_REPO=false
 SPACESHIP_GIT_BRANCH_COLOR="green"
 SPACESHIP_PYENV_SHOW=false
 SPACESHIP_VENV_COLOR="magenta"
+
+# neovim
+export PATH="$HOME/neovim/bin:$PATH"
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"

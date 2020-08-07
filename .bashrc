@@ -5,6 +5,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad  # for BSD ls
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'  # for GNU ls
 
 export PATH="$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 
 HISTFILE="$HOME/.bash_history"
 SAVEHIST=100000
@@ -35,6 +36,9 @@ function venv_info() {
     fi
 }
 PS1='\[\e[31m\]\D{%Y-%m-%d} \[\e[33m\]\A \[\e[32m\]\h \[\e[36m\]\w \[\e[34m\]$(git_info)\[\e[35m\]$(venv_info)\n\[\e[32m\]\\$ \[\e[m\]'
+
+# neovim
+export PATH="$HOME/neovim/bin:$PATH"
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
