@@ -1,15 +1,20 @@
+# Language and Locale
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 
-export LSCOLORS=exfxcxdxbxegedabagacad  # for BSD ls
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'  # for GNU ls
+# Homebrew Paths
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 
+# Custom Paths
 export PATH="$HOME/local/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 
-HISTFILE="$HOME/.zsh_history"
-SAVEHIST=100000
-HISTSIZE=10000
+# History
+export HISTFILE="$HOME/.zsh_history"
+export SAVEHIST=100000
+export HISTSIZE=10000
 
 setopt append_history
 setopt complete_in_word
@@ -29,16 +34,19 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:default' menu select=2
 
+# ls
+export LSCOLORS=exfxcxdxbxegedabagacad  # for BSD ls
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'  # for GNU ls
 alias ls='ls --color'
 
 # zplug
-source ~/.zplug/init.zsh
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search"
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -60,11 +68,7 @@ SPACESHIP_GIT_BRANCH_COLOR="green"
 SPACESHIP_PYENV_SHOW=false
 SPACESHIP_VENV_COLOR="magenta"
 
-# neovim
-export PATH="$HOME/neovim/bin:$PATH"
-
 # pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
@@ -72,6 +76,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # fzf
-if [ -f "$HOME/.fzf.zsh" ]; then
-    source "$HOME/.fzf.zsh"
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

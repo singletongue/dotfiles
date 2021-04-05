@@ -1,14 +1,14 @@
 " dein (https://github.com/Shougo/dein.vim)
 if &compatible
-    set nocompatible               " Be iMproved
+    set nocompatible
 endif
 
-set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.vim/bundles')
-    call dein#begin('~/.vim/bundles')
+if dein#load_state('~/.cache/dein')
+    call dein#begin('~/.cache/dein')
 
-    call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim')
+    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
     call dein#add('Shougo/denite.nvim')
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('deoplete-plugins/deoplete-jedi')
@@ -35,7 +35,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-n> :NERDTreeToggle<CR>
 
 " colorscheme and style
-colorscheme base16-material
+set termguicolors
+colorscheme base16-onedark
 let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled = 1
 
